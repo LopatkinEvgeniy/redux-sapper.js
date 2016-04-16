@@ -1,15 +1,15 @@
 import { fromJS } from 'immutable';
 
-let initialState = fromJS({
+const initialState = fromJS({
   nextId: 0,
-  items: []
+  items: [],
 });
 
 export default function toastsImmutable(state = initialState, action) {
   switch (action.type) {
 
-
-    default:
+    default: {
       return state;
+    }
   }
 }

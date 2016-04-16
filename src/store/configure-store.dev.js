@@ -7,7 +7,7 @@ import DevTools from '../containers/dev-tools';
 
 const loggerMiddleware = createLogger({
   level: 'info',
-  collapsed: true
+  collapsed: true,
 });
 
 /**
@@ -23,6 +23,6 @@ export default function configureStore(initialState) {
       persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
     )
   );
-  
+
   return store;
 }
