@@ -1,0 +1,22 @@
+.app__header {
+  height: 50px;
+  background: black;
+}
+
+.app__content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.app_controlls {
+  height: 500px;
+  width: 200px;
+  background-color: #468847;
+  margin-right: 20px;
+  flex: 0 1 auto;
+}
+
+.app__field {
+  flex: 0 1 auto;
+}
