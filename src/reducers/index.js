@@ -1,15 +1,8 @@
-import { fromJS } from 'immutable';
+import { combineReducers } from 'redux';
+import fieldImmutable from './fieldImmutable';
 
-const initialState = fromJS({
-  nextId: 0,
-  items: [],
+const rootReducer = combineReducers({
+  fieldImmutable,
 });
 
-export default function toastsImmutable(state = initialState, action) {
-  switch (action.type) {
-
-    default: {
-      return state;
-    }
-  }
-}
+export default rootReducer;

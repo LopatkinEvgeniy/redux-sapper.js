@@ -1,0 +1,1 @@
+export const FIELD_GENERATE = 'FIELD_GENERATE';

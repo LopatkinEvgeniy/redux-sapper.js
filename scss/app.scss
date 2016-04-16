@@ -3,10 +3,18 @@
   background: black;
 }
 
+.app__title {
+  text-align: center;
+  color: white;
+  line-height: 50px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
 .app__content {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+  align-content: flex-start;
 }
 
 .app_controlls {
