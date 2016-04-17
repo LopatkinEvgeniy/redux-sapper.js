@@ -2,6 +2,7 @@
   border: 1px solid black;
   background-color: #b4daff;
   padding: $cellSpace / 2;
+  @include shadow(2);
 }
 
 .field__row {

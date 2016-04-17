@@ -1,6 +1,7 @@
 .app__header {
   height: 50px;
   background: black;
+  @include shadow(2);
 }
 
 .app__title {
@@ -8,6 +9,7 @@
   color: white;
   line-height: 50px;
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  margin: 0;
 }
 
 .app__content {
@@ -20,9 +22,10 @@
 .app_controlls {
   height: 500px;
   width: 200px;
-  background-color: #468847;
+  background-color: #B3E5FC;
   margin-right: 20px;
   flex: 0 1 auto;
+  @include shadow(2);
 }
 
 .app__field {
