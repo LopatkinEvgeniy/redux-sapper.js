@@ -2,23 +2,16 @@ import {
   FIELD_GENERATE,
 } from '../constants/actions';
 
-function generateRows() {
-  const rows = [];
+// import {
+//   CELL_STATUS_CLOSED,
+//   CELL_STATUS_OPENED,
+//   CELL_STATUS_QUESTION,
+//   CELL_STATUS_MARK,
+// } from '../constants/field';
 
-  for (let rowIndex = 0; rowIndex < 20; rowIndex++) {
-    const row = [];
+import generateRows from '../utils/generateRows';
 
-    for (let cellIndex = 0; cellIndex < 30; cellIndex++) {
-      row.push(1);
-    }
-
-    rows.push(row);
-  }
-
-  return rows;
-}
-
-export const fieldGenerateAction = () => ({
+export const fieldGenerateAction = ({ rowsCount, colsCount, bombsFactor }) => ({
   type: FIELD_GENERATE,
-  rows: generateRows(),
+  rows: generateRows({ rowsCount, colsCount, bombsFactor }),
 });
