@@ -7,8 +7,12 @@ class Field extends Component {
     props.fieldGenerateAction({
       rowsCount: 20,
       colsCount: 30,
-      bombsFactor: 0.1,
+      bombsFactor: 0.2,
     });
+  }
+
+  getCellContent(cell) {
+    return cell.get('hasBomb') ? 'B' : cell.get('bombsAroundCount');
   }
 
   render() {
@@ -21,7 +25,7 @@ class Field extends Component {
           <div key={rowKey} className="field__row">
             {row.map((cell, cellKey) => (
               <div key={cellKey} className="field__cell">
-                {cell.get('hasBomb') ? 'B' : ''}
+                {this.getCellContent(cell)}
               </div>
             ))}
           </div>
