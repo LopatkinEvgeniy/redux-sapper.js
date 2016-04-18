@@ -3,6 +3,7 @@
   background-color: #b4daff;
   padding: $cellSpace / 2;
   @include shadow(2);
+  display: inline-block;
 }
 
 .field__row {

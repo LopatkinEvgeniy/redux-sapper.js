@@ -1,0 +1,31 @@
+@mixin button-raised($text-color, $background-color, $focus-color) {
+  color: $text-color;
+  background-color: $background-color;
+  box-shadow: 0 0 1px rgba(0,0,0,.11),0 1px 2px rgba(0,0,0,.22);
+
+  &:not(:disabled):hover, &:not(:disabled):focus   {
+    box-shadow: 0 0 3px rgba(0,0,0,.13),0 3px 6px rgba(0,0,0,.26);
+    background-color: $focus-color;
+    outline: 0;
+  }
+
+  &:disabled {
+    box-shadow: none;
+    color: rgba(0,0,0,.26);
+    background-color: rgba(0,0,0,.12);
+  }
+}
+
+.button {
+  transition: background-color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1);
+  padding: 0 18px;
+  height: 38px;
+  border: none;
+  border-radius: 2px;
+  min-width: 48px;
+  text-transform: uppercase;
+}
+
+.button_raised_blue {
+  @include button-raised(#fff, $buttonRaisedBackgroundBlue, $buttonRaisedBackgroundFocusBlue);
+}

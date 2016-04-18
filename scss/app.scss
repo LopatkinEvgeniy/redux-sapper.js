@@ -14,20 +14,19 @@
 
 .app__content {
   margin-top: 20px;
-  display: flex;
   justify-content: center;
   align-content: flex-start;
+  text-align: center;
 }
 
 .app_controlls {
-  height: 500px;
-  width: 200px;
+  display: flex;
+  padding: 5px;
+  width: 500px;
   background-color: #B3E5FC;
-  margin-right: 20px;
-  flex: 0 1 auto;
+  margin: 20px auto;
   @include shadow(2);
 }
 
 .app__field {
-  flex: 0 1 auto;
 }

@@ -2,6 +2,9 @@
 $cellSize: 20px;
 $cellSpace: 2px;
 
+$buttonRaisedBackgroundBlue: #1565c0;
+$buttonRaisedBackgroundFocusBlue: #1E88E5;
+
 // mixins
 
 @mixin shadow($number) {
