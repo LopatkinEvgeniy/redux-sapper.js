@@ -1,0 +1,32 @@
+.tooltip {
+  position: relative;
+}
+
+.tooltip__content {
+  position: absolute;
+  z-index: 10;
+  @include shadow(3);
+  margin-top: 5px;
+
+  left: 0;
+  background: white;
+}
+
+.tooltip__content_logout {
+  margin-top: 10px;
+  padding: 0;
+  background: transparent;
+  border-radius: 5px;
+}
+
+.tooltip__content_filter {
+  padding: 10px 15px;
+  width: 470px;
+}
+
+@media (max-width: 768px) {
+  .tooltip__content_filter {
+    padding: 5px 7px;
+    width: auto;
+  }
+}

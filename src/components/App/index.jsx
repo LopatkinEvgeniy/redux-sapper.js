@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field } from '../../containers';
+import Controls from '../Controls';
 
 export default () => (
   <div className="app">
@@ -7,8 +8,8 @@ export default () => (
       <h1 className="app__title">Sapper.js</h1>
     </header>
     <div className="app__content">
-      <div className="app_controlls">
-        <button className="button button_raised_blue">new</button>
+      <div className="app_controls">
+        <Controls />
       </div>
 
       <div className="app__field">
