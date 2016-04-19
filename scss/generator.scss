@@ -1,0 +1,25 @@
+.generator__row {
+  display: flex;
+  height: 30px;
+  margin-top: 5px;
+}
+
+.generator__row_buttons {
+  height: auto;
+}
+
+.generator__field-name {
+  flex: 0 1 auto;
+  width: 150px;
+  text-align: left;
+  line-height: 30px;
+}
+
+.generator__field {
+  width: 250px;
+}
+
+.generator__select {
+  width: 100%;
+  background: white;
+}

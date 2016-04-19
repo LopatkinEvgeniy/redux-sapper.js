@@ -16,6 +16,16 @@
   }
 }
 
+@mixin button-flat($color) {
+  color: $color;
+  background-color: transparent;
+
+  &:not(:disabled):hover, &:not(:disabled):focus   {
+    outline: 0;
+    background-color: rgba($color, .12);
+  }
+}
+
 .button {
   transition: background-color .15s cubic-bezier(.4,0,.2,1),box-shadow .15s cubic-bezier(.4,0,.2,1);
   padding: 0 18px;
@@ -26,6 +36,14 @@
   text-transform: uppercase;
 }
 
+.button_generate {
+  width: 100%;
+}
+
 .button_raised_blue {
   @include button-raised(#fff, $buttonRaisedBackgroundBlue, $buttonRaisedBackgroundFocusBlue);
+}
+
+.button_flat_blue {
+  @include button-flat($buttonRaisedBackgroundBlue);
 }
