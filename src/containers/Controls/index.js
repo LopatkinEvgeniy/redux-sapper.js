@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Field from '../../components/Field';
+import Controls from '../../components/Controls';
 import { bindActionCreators } from 'redux';
 import * as fieldActions from '../../actions/field';
 
@@ -13,4 +13,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(fieldActions, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Field);
+export default connect(mapStateToProps, mapDispatchToProps)(Controls);

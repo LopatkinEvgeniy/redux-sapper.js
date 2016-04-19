@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Tooltip from '../Tooltip';
 
 class GenerateForm extends Component {
@@ -9,11 +9,13 @@ class GenerateForm extends Component {
   }
 
   generateField() {
-    const rows = parseInt(this.refs.rows.value, 10) || 20;
-    const cols = parseInt(this.refs.cols.value, 10) || 30;
-    const bombsRate = this.refs.bombsRate.value;
+    const { fieldGenerateAction } = this.props;
 
-    console.log(rows, cols, bombsRate);
+    const rowsCount = parseInt(this.refs.rowsCount.value, 10) || 20;
+    const colsCount = parseInt(this.refs.colsCount.value, 10) || 30;
+    const bombsFactor = +this.refs.bombsFactor.value;
+
+    fieldGenerateAction({ rowsCount, colsCount, bombsFactor });
   }
 
   render() {
@@ -24,7 +26,7 @@ class GenerateForm extends Component {
             Rows:
           </div>
           <div className="generator__field">
-            <input type="text" ref="rows" />
+            <input type="text" ref="rowsCount" />
           </div>
         </div>
         <div className="generator__row">
@@ -32,7 +34,7 @@ class GenerateForm extends Component {
             Cols:
           </div>
           <div className="generator__field">
-            <input type="text" ref="cols" />
+            <input type="text" ref="colsCount" />
           </div>
         </div>
         <div className="generator__row">
@@ -40,7 +42,7 @@ class GenerateForm extends Component {
             Bombs rate:
           </div>
           <div className="generator__field">
-            <select className="generator__select" type="text" ref="bombsRate">
+            <select className="generator__select" type="text" ref="bombsFactor">
               <option value="0.02">0.02</option>
               <option value="0.05">0.05</option>
               <option value="0.1">0.1</option>
@@ -62,10 +64,16 @@ class GenerateForm extends Component {
   }
 }
 
-export default () => (
+// TODO: use immutable PropTypes
+GenerateForm.propTypes = {
+  fieldImmutable: PropTypes.object.isRequired,
+  fieldGenerateAction: PropTypes.func.isRequired,
+};
+
+export default ({ fieldImmutable, fieldGenerateAction }) => (
   <div>
     <Tooltip
-      overlay={<GenerateForm />}
+      overlay={<GenerateForm fieldImmutable={fieldImmutable} fieldGenerateAction={fieldGenerateAction} />}
       className="tooltip__content_filter"
     >
       <button className="button button_raised_blue">new</button>

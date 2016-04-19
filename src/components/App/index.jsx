@@ -1,6 +1,5 @@
 import React from 'react';
-import { Field } from '../../containers';
-import Controls from '../Controls';
+import { Field, Controls } from '../../containers';
 
 export default () => (
   <div className="app">
