@@ -1,5 +1,6 @@
 import {
   FIELD_GENERATE,
+  FIELD_SET_OPTIONS,
 } from '../constants/actions';
 
 // import {
@@ -14,4 +15,11 @@ import generateRows from '../utils/generateRows';
 export const fieldGenerateAction = ({ rowsCount, colsCount, bombsFactor }) => ({
   type: FIELD_GENERATE,
   rows: generateRows({ rowsCount, colsCount, bombsFactor }),
+});
+
+export const fieldSetOptionsAction = ({ rowsCount, colsCount, bombsFactor }) => ({
+  type: FIELD_SET_OPTIONS,
+  rowsCount,
+  colsCount,
+  bombsFactor,
 });

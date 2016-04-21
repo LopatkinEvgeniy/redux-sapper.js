@@ -1,13 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 
-export default class Tooltip extends Component {
+class Tooltip extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       isHidden: true,
     };
+
+    this.toggleHide = this.toggleHide.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +45,7 @@ export default class Tooltip extends Component {
 
     return (
       <div className="tooltip">
-        <div onClick={this.toggleHide.bind(this)}>
+        <div onClick={this.toggleHide}>
           {children}
         </div>
 
@@ -56,3 +58,11 @@ export default class Tooltip extends Component {
     );
   }
 }
+
+Tooltip.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.object.required,
+  overlay: PropTypes.object.required,
+};
+
+export default Tooltip;

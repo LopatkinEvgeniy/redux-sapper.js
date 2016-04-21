@@ -9,16 +9,19 @@ class GenerateForm extends Component {
   }
 
   generateField() {
-    const { fieldGenerateAction } = this.props;
+    const { fieldGenerateAction, fieldSetOptionsAction } = this.props;
 
     const rowsCount = parseInt(this.refs.rowsCount.value, 10) || 20;
     const colsCount = parseInt(this.refs.colsCount.value, 10) || 30;
     const bombsFactor = +this.refs.bombsFactor.value;
 
+    fieldSetOptionsAction({ rowsCount, colsCount, bombsFactor });
     fieldGenerateAction({ rowsCount, colsCount, bombsFactor });
   }
 
   render() {
+    const { fieldImmutable } = this.props;
+
     return (
       <div className="generator">
         <div className="generator__row">
@@ -26,7 +29,12 @@ class GenerateForm extends Component {
             Rows:
           </div>
           <div className="generator__field">
-            <select className="generator__select" type="text" ref="rowsCount">
+            <select
+              className="generator__select"
+              type="text"
+              ref="rowsCount"
+              defaultValue={fieldImmutable.get('rowsCount')}
+            >
               <option value="20">20</option>
               <option value="30">30</option>
               <option value="50">50</option>
@@ -40,7 +48,12 @@ class GenerateForm extends Component {
             Cols:
           </div>
           <div className="generator__field">
-            <select className="generator__select" type="text" ref="colsCount">
+            <select
+              className="generator__select"
+              type="text"
+              ref="colsCount"
+              defaultValue={fieldImmutable.get('colsCount')}
+            >
               <option value="20">20</option>
               <option value="30">30</option>
               <option value="50">50</option>
@@ -54,7 +67,12 @@ class GenerateForm extends Component {
             Bombs rate:
           </div>
           <div className="generator__field">
-            <select className="generator__select" type="text" ref="bombsFactor">
+            <select
+              className="generator__select"
+              type="text"
+              ref="bombsFactor"
+              defaultValue={fieldImmutable.get('bombsFactor')}
+            >
               <option value="0.02">0.02</option>
               <option value="0.05">0.05</option>
               <option value="0.1">0.1</option>
@@ -67,7 +85,8 @@ class GenerateForm extends Component {
         <div className="generator__row generator__row_buttons">
           <button
             onClick={this.generateField}
-            className="button button_flat_blue button_generate">
+            className="button button_flat_blue button_generate"
+          >
             generate
           </button>
         </div>
@@ -80,15 +99,30 @@ class GenerateForm extends Component {
 GenerateForm.propTypes = {
   fieldImmutable: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
+  fieldSetOptionsAction: PropTypes.func.isRequired,
 };
 
-export default ({ fieldImmutable, fieldGenerateAction }) => (
+const Controls = ({ fieldImmutable, fieldGenerateAction, fieldSetOptionsAction }) => (
   <div>
     <Tooltip
-      overlay={<GenerateForm fieldImmutable={fieldImmutable} fieldGenerateAction={fieldGenerateAction} />}
+      overlay={
+        <GenerateForm
+          fieldImmutable={fieldImmutable}
+          fieldGenerateAction={fieldGenerateAction}
+          fieldSetOptionsAction={fieldSetOptionsAction}
+        />
+      }
       className="tooltip__content_filter"
     >
       <button className="button button_raised_blue">new</button>
     </Tooltip>
   </div>
 );
+
+Controls.propTypes = {
+  fieldImmutable: PropTypes.object.isRequired,
+  fieldGenerateAction: PropTypes.func.isRequired,
+  fieldSetOptionsAction: PropTypes.func.isRequired,
+};
+
+export default Controls;

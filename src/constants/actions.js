@@ -1,1 +1,2 @@
 export const FIELD_GENERATE = 'FIELD_GENERATE';
+export const FIELD_SET_OPTIONS = 'FIELD_SET_OPTIONS';

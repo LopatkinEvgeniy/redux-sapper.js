@@ -4,10 +4,12 @@ class Field extends Component {
   constructor(props) {
     super(props);
 
+    const { fieldImmutable, fieldGenerateAction } = props;
+
     props.fieldGenerateAction({
-      rowsCount: 20,
-      colsCount: 30,
-      bombsFactor: 0.2,
+      rowsCount: fieldImmutable.get('rowsCount'),
+      colsCount: fieldImmutable.get('colsCount'),
+      bombsFactor: fieldImmutable.get('bombsFactor'),
     });
   }
 
