@@ -26,7 +26,13 @@ class GenerateForm extends Component {
             Rows:
           </div>
           <div className="generator__field">
-            <input type="text" ref="rowsCount" />
+            <select className="generator__select" type="text" ref="rowsCount">
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="50">50</option>
+              <option value="75">75</option>
+              <option value="100">100</option>
+            </select>
           </div>
         </div>
         <div className="generator__row">
@@ -34,7 +40,13 @@ class GenerateForm extends Component {
             Cols:
           </div>
           <div className="generator__field">
-            <input type="text" ref="colsCount" />
+            <select className="generator__select" type="text" ref="colsCount">
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="50">50</option>
+              <option value="75">75</option>
+              <option value="100">100</option>
+            </select>
           </div>
         </div>
         <div className="generator__row">
