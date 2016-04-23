@@ -1,6 +1,7 @@
 import {
   FIELD_GENERATE,
   FIELD_SET_OPTIONS,
+  FIELD_OPEN_CELLS_ACTION,
 } from '../constants/actions';
 
 // import {
@@ -22,4 +23,10 @@ export const fieldSetOptionsAction = ({ rowsCount, colsCount, bombsFactor }) => 
   rowsCount,
   colsCount,
   bombsFactor,
+});
+
+export const fieldOpenRowAction = ({ rowKey, cellKey }) => ({
+  type: FIELD_OPEN_CELLS_ACTION,
+  rowKey,
+  cellKey,
 });

@@ -23,4 +23,14 @@
   font-weight: bold;
   text-align: center;
   line-height: $cellSize;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.field__cell_opened {
+  &:hover {
+    opacity: 1;
+  }
 }

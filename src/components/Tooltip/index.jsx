@@ -61,8 +61,8 @@ class Tooltip extends Component {
 
 Tooltip.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.object.required,
-  overlay: PropTypes.object.required,
+  children: PropTypes.element.isRequired,
+  overlay: PropTypes.element.isRequired,
 };
 
 export default Tooltip;

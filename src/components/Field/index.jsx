@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Cell from './Cell';
 
 class Field extends Component {
   constructor(props) {
@@ -6,19 +7,15 @@ class Field extends Component {
 
     const { fieldImmutable, fieldGenerateAction } = props;
 
-    props.fieldGenerateAction({
+    fieldGenerateAction({
       rowsCount: fieldImmutable.get('rowsCount'),
       colsCount: fieldImmutable.get('colsCount'),
       bombsFactor: fieldImmutable.get('bombsFactor'),
     });
   }
 
-  getCellContent(cell) {
-    return cell.get('hasBomb') ? 'B' : cell.get('bombsAroundCount');
-  }
-
   render() {
-    const { fieldImmutable } = this.props;
+    const { fieldImmutable, fieldOpenRowAction } = this.props;
     const rows = fieldImmutable.get('rows');
 
     return (
@@ -26,9 +23,13 @@ class Field extends Component {
         {rows.map((row, rowKey) => (
           <div key={rowKey} className="field__row">
             {row.map((cell, cellKey) => (
-              <div key={cellKey} className="field__cell">
-                {this.getCellContent(cell)}
-              </div>
+              <Cell
+                key={cellKey}
+                cell={cell}
+                rowKey={rowKey}
+                cellKey={cellKey}
+                fieldOpenRowAction={fieldOpenRowAction}
+              />
             ))}
           </div>
         ))}
@@ -41,6 +42,7 @@ class Field extends Component {
 Field.propTypes = {
   fieldImmutable: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
+  fieldOpenRowAction: PropTypes.func.isRequired,
 };
 
 export default Field;
