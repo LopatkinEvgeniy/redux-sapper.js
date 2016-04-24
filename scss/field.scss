@@ -19,7 +19,6 @@
   margin: $cellSpace;
 
   // temporaty
-  color: white;
   font-weight: bold;
   text-align: center;
   line-height: $cellSize;
@@ -30,6 +29,8 @@
 }
 
 .field__cell_opened {
+  background-color: #F5F5F5;
+
   &:hover {
     opacity: 1;
   }

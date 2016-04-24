@@ -20,29 +20,10 @@ class GenerateForm extends Component {
   }
 
   render() {
-    const { fieldImmutable } = this.props;
+    const { fieldState } = this.props;
 
     return (
       <div className="generator">
-        <div className="generator__row">
-          <div className="generator__field-name">
-            Rows:
-          </div>
-          <div className="generator__field">
-            <select
-              className="generator__select"
-              type="text"
-              ref="rowsCount"
-              defaultValue={fieldImmutable.get('rowsCount')}
-            >
-              <option value="20">20</option>
-              <option value="30">30</option>
-              <option value="50">50</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-            </select>
-          </div>
-        </div>
         <div className="generator__row">
           <div className="generator__field-name">
             Cols:
@@ -52,13 +33,32 @@ class GenerateForm extends Component {
               className="generator__select"
               type="text"
               ref="colsCount"
-              defaultValue={fieldImmutable.get('colsCount')}
+              defaultValue={fieldState.colsCount}
             >
               <option value="20">20</option>
               <option value="30">30</option>
+              <option value="40">40</option>
               <option value="50">50</option>
               <option value="75">75</option>
-              <option value="100">100</option>
+            </select>
+          </div>
+        </div>
+        <div className="generator__row">
+          <div className="generator__field-name">
+            Rows:
+          </div>
+          <div className="generator__field">
+            <select
+              className="generator__select"
+              type="text"
+              ref="rowsCount"
+              defaultValue={fieldState.rowsCount}
+            >
+              <option value="20">20</option>
+              <option value="30">30</option>
+              <option value="40">40</option>
+              <option value="50">50</option>
+              <option value="75">75</option>
             </select>
           </div>
         </div>
@@ -71,7 +71,7 @@ class GenerateForm extends Component {
               className="generator__select"
               type="text"
               ref="bombsFactor"
-              defaultValue={fieldImmutable.get('bombsFactor')}
+              defaultValue={fieldState.bombsFactor}
             >
               <option value="0.02">0.02</option>
               <option value="0.05">0.05</option>
@@ -97,17 +97,17 @@ class GenerateForm extends Component {
 
 // TODO: use immutable PropTypes
 GenerateForm.propTypes = {
-  fieldImmutable: PropTypes.object.isRequired,
+  fieldState: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
   fieldSetOptionsAction: PropTypes.func.isRequired,
 };
 
-const Controls = ({ fieldImmutable, fieldGenerateAction, fieldSetOptionsAction }) => (
+const Controls = ({ fieldState, fieldGenerateAction, fieldSetOptionsAction }) => (
   <div>
     <Tooltip
       overlay={
         <GenerateForm
-          fieldImmutable={fieldImmutable}
+          fieldState={fieldState}
           fieldGenerateAction={fieldGenerateAction}
           fieldSetOptionsAction={fieldSetOptionsAction}
         />
@@ -120,7 +120,7 @@ const Controls = ({ fieldImmutable, fieldGenerateAction, fieldSetOptionsAction }
 );
 
 Controls.propTypes = {
-  fieldImmutable: PropTypes.object.isRequired,
+  fieldState: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
   fieldSetOptionsAction: PropTypes.func.isRequired,
 };

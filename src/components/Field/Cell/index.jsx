@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import {
-  CELL_STATUS_CLOSED,
+  // CELL_STATUS_CLOSED,
   CELL_STATUS_OPENED,
-  CELL_STATUS_QUESTION,
-  CELL_STATUS_MARK,
+  // CELL_STATUS_QUESTION,
+  // CELL_STATUS_MARK,
 } from '../../../constants/field';
 
 class Cell extends Component {
@@ -20,11 +20,11 @@ class Cell extends Component {
   }
 
   getCellContent(cell) {
-    const status = cell.get('status');
+    const status = cell.status;
 
     switch (status) {
       case CELL_STATUS_OPENED: {
-        return cell.get('hasBomb') ? 'B' : cell.get('bombsAroundCount');
+        return cell.hasBomb ? 'B' : cell.bombsAroundCount;
       }
 
       default: {
@@ -35,7 +35,7 @@ class Cell extends Component {
 
   render() {
     const { cell } = this.props;
-    const isOpened = cell.get('status') === CELL_STATUS_OPENED;
+    const isOpened = cell.status === CELL_STATUS_OPENED;
     const className = `field__cell${isOpened ? ' field__cell_opened' : ''}`;
 
 
@@ -46,5 +46,12 @@ class Cell extends Component {
     );
   }
 }
+
+Cell.propTypes = {
+  rowKey: PropTypes.number.isRequired,
+  cellKey: PropTypes.number.isRequired,
+  cell: PropTypes.object.isRequired,
+  fieldOpenRowAction: PropTypes.func.isRequired,
+};
 
 export default Cell;

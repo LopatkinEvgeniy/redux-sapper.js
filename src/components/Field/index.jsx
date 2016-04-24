@@ -5,18 +5,18 @@ class Field extends Component {
   constructor(props) {
     super(props);
 
-    const { fieldImmutable, fieldGenerateAction } = props;
+    const { fieldState, fieldGenerateAction } = props;
 
     fieldGenerateAction({
-      rowsCount: fieldImmutable.get('rowsCount'),
-      colsCount: fieldImmutable.get('colsCount'),
-      bombsFactor: fieldImmutable.get('bombsFactor'),
+      rowsCount: fieldState.rowsCount,
+      colsCount: fieldState.colsCount,
+      bombsFactor: fieldState.bombsFactor,
     });
   }
 
   render() {
-    const { fieldImmutable, fieldOpenRowAction } = this.props;
-    const rows = fieldImmutable.get('rows');
+    const { fieldState, fieldOpenRowAction } = this.props;
+    const rows = fieldState.rows;
 
     return (
       <div className="field">
@@ -40,7 +40,7 @@ class Field extends Component {
 
 // TODO: use immutable PropTypes
 Field.propTypes = {
-  fieldImmutable: PropTypes.object.isRequired,
+  fieldState: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
   fieldOpenRowAction: PropTypes.func.isRequired,
 };

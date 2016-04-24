@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import fieldImmutable from './fieldImmutable';
+import fieldState from './fieldState';
 
 const rootReducer = combineReducers({
-  fieldImmutable,
+  fieldState,
 });
 
 export default rootReducer;

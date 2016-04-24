@@ -5,7 +5,7 @@ import * as fieldActions from '../../actions/field';
 
 function mapStateToProps(state) {
   return {
-    fieldImmutable: state.fieldImmutable,
+    fieldState: state.fieldState,
   };
 }
 
