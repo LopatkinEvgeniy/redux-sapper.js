@@ -11,6 +11,8 @@ import {
   // CELL_STATUS_MARK,
 } from '../../constants/field';
 
+import openCellsRecursive from '../../utils/openCellsRecursive';
+
 const initialState = {
   rows: [],
   rowsCount: 20,
@@ -38,7 +40,20 @@ export default function fieldState(state = initialState, action) {
       const { rowKey, cellKey } = action;
       const newRows = JSON.parse(JSON.stringify(state.rows));
 
-      newRows[rowKey][cellKey].status = CELL_STATUS_OPENED;
+      if (!newRows[rowKey][cellKey].hasBomb &&
+        (newRows[rowKey][cellKey].bombsAroundCount === 0)) {
+        const rowsLength = newRows.length;
+        const cellsLength = newRows[rowKey].length;
+
+        openCellsRecursive({
+          rows: newRows,
+          rowKey,
+          cellKey,
+          rowsLength,
+          cellsLength });
+      } else {
+        newRows[rowKey][cellKey].status = CELL_STATUS_OPENED;
+      }
 
       return Object.assign({}, state, {
         rows: newRows,

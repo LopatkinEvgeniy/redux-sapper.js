@@ -14,9 +14,11 @@ class Cell extends Component {
   }
 
   onClick() {
-    const { fieldOpenRowAction, rowKey, cellKey } = this.props;
+    const { fieldOpenRowAction, rowKey, cellKey, cell } = this.props;
 
-    fieldOpenRowAction({ rowKey, cellKey });
+    if (cell.status !== CELL_STATUS_OPENED) {
+      fieldOpenRowAction({ rowKey, cellKey });
+    }
   }
 
   getCellContent(cell) {
@@ -24,7 +26,15 @@ class Cell extends Component {
 
     switch (status) {
       case CELL_STATUS_OPENED: {
-        return cell.hasBomb ? 'B' : cell.bombsAroundCount;
+        if (cell.hasBomb) {
+          return 'B';
+        }
+
+        if (cell.bombsAroundCount > 0) {
+          return cell.bombsAroundCount;
+        }
+
+        return null;
       }
 
       default: {
