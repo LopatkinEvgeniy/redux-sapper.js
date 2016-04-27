@@ -15,7 +15,7 @@ class Field extends Component {
   }
 
   render() {
-    const { fieldState, fieldOpenRowAction } = this.props;
+    const { fieldState, fieldOpenRowAction, fieldClickOnBombAction } = this.props;
     const rows = fieldState.rows;
 
     return (
@@ -28,7 +28,9 @@ class Field extends Component {
                 cell={cell}
                 rowKey={rowKey}
                 cellKey={cellKey}
+                isBlocked={fieldState.isBlocked}
                 fieldOpenRowAction={fieldOpenRowAction}
+                fieldClickOnBombAction={fieldClickOnBombAction}
               />
             ))}
           </div>
@@ -43,6 +45,7 @@ Field.propTypes = {
   fieldState: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
   fieldOpenRowAction: PropTypes.func.isRequired,
+  fieldClickOnBombAction: PropTypes.func.isRequired,
 };
 
 export default Field;

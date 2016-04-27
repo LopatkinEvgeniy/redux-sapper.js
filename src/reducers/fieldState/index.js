@@ -1,7 +1,8 @@
 import {
   FIELD_GENERATE,
   FIELD_SET_OPTIONS,
-  FIELD_OPEN_CELLS_ACTION,
+  FIELD_OPEN_CELLS,
+  FIELD_CLICK_ON_BOMB,
 } from '../../constants/actions';
 
 import {
@@ -18,6 +19,7 @@ const initialState = {
   rowsCount: 20,
   colsCount: 30,
   bombsFactor: 0.1,
+  isBlocked: false,
 };
 
 export default function fieldState(state = initialState, action) {
@@ -25,6 +27,7 @@ export default function fieldState(state = initialState, action) {
     case FIELD_GENERATE: {
       return Object.assign({}, state, {
         rows: action.rows,
+        isBlocked: false,
       });
     }
 
@@ -36,7 +39,7 @@ export default function fieldState(state = initialState, action) {
       });
     }
 
-    case FIELD_OPEN_CELLS_ACTION: {
+    case FIELD_OPEN_CELLS: {
       const { rowKey, cellKey } = action;
       const newRows = JSON.parse(JSON.stringify(state.rows));
 
@@ -57,6 +60,23 @@ export default function fieldState(state = initialState, action) {
 
       return Object.assign({}, state, {
         rows: newRows,
+      });
+    }
+
+    case FIELD_CLICK_ON_BOMB: {
+      const newRows = JSON.parse(JSON.stringify(state.rows));
+
+      newRows.forEach(row => row.forEach(cell => {
+        const currentCell = cell;
+
+        if (currentCell.hasBomb) {
+          currentCell.status = CELL_STATUS_OPENED;
+        }
+      }));
+
+      return Object.assign({}, state, {
+        rows: newRows,
+        isBlocked: true,
       });
     }
 

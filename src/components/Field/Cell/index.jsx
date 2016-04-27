@@ -14,11 +14,28 @@ class Cell extends Component {
   }
 
   onClick() {
-    const { fieldOpenRowAction, rowKey, cellKey, cell } = this.props;
+    const {
+      fieldOpenRowAction,
+      fieldClickOnBombAction,
+      rowKey,
+      cellKey,
+      cell,
+      isBlocked,
+    } = this.props;
 
-    if (cell.status !== CELL_STATUS_OPENED) {
-      fieldOpenRowAction({ rowKey, cellKey });
+    if (isBlocked) {
+      return false;
     }
+
+    if (cell.status === CELL_STATUS_OPENED) {
+      return false;
+    }
+
+    if (cell.hasBomb) {
+      return fieldClickOnBombAction();
+    }
+
+    return fieldOpenRowAction({ rowKey, cellKey });
   }
 
   getCellContent(cell) {
@@ -46,8 +63,16 @@ class Cell extends Component {
   render() {
     const { cell } = this.props;
     const isOpened = cell.status === CELL_STATUS_OPENED;
-    const className = `field__cell${isOpened ? ' field__cell_opened' : ''}`;
+    const hasBomb = cell.hasBomb;
+    let className = 'field__cell';
 
+    if (isOpened) {
+      className += ' field__cell_opened';
+
+      if (hasBomb) {
+        className += ' field__cell_bombed';
+      }
+    }
 
     return (
       <div className={className} onClick={this.onClick}>
@@ -62,6 +87,8 @@ Cell.propTypes = {
   cellKey: PropTypes.number.isRequired,
   cell: PropTypes.object.isRequired,
   fieldOpenRowAction: PropTypes.func.isRequired,
+  fieldClickOnBombAction: PropTypes.func.isRequired,
+  isBlocked: PropTypes.bool.isRequired,
 };
 
 export default Cell;
