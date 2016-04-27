@@ -4,6 +4,9 @@ import {
   CELL_STATUS_OPENED,
   // CELL_STATUS_QUESTION,
   // CELL_STATUS_MARK,
+  GAME_STATUS_WIN,
+  GAME_STATUS_LOOSE,
+  GAME_STATUS_GAME,
 } from '../../../constants/field';
 
 class Cell extends Component {
@@ -20,10 +23,10 @@ class Cell extends Component {
       rowKey,
       cellKey,
       cell,
-      isBlocked,
+      gameStatus,
     } = this.props;
 
-    if (isBlocked) {
+    if (gameStatus !== GAME_STATUS_GAME) {
       return false;
     }
 
@@ -38,12 +41,16 @@ class Cell extends Component {
     return fieldOpenRowAction({ rowKey, cellKey });
   }
 
-  getCellContent(cell) {
+  getCellContent(cell, gameStatus) {
     const status = cell.status;
 
     switch (status) {
       case CELL_STATUS_OPENED: {
         if (cell.hasBomb) {
+          if (gameStatus === GAME_STATUS_WIN) {
+            return String.fromCharCode(10004);
+          }
+
           return 'B';
         }
 
@@ -61,7 +68,7 @@ class Cell extends Component {
   }
 
   render() {
-    const { cell } = this.props;
+    const { cell, gameStatus } = this.props;
     const isOpened = cell.status === CELL_STATUS_OPENED;
     const hasBomb = cell.hasBomb;
     let className = 'field__cell';
@@ -69,14 +76,16 @@ class Cell extends Component {
     if (isOpened) {
       className += ' field__cell_opened';
 
-      if (hasBomb) {
+      if (hasBomb && gameStatus === GAME_STATUS_LOOSE) {
         className += ' field__cell_bombed';
+      } else if (hasBomb && gameStatus === GAME_STATUS_WIN) {
+        className += ' field__cell_founded';
       }
     }
 
     return (
       <div className={className} onClick={this.onClick}>
-        {this.getCellContent(cell)}
+        {this.getCellContent(cell, gameStatus)}
       </div>
     );
   }
@@ -88,7 +97,7 @@ Cell.propTypes = {
   cell: PropTypes.object.isRequired,
   fieldOpenRowAction: PropTypes.func.isRequired,
   fieldClickOnBombAction: PropTypes.func.isRequired,
-  isBlocked: PropTypes.bool.isRequired,
+  gameStatus: PropTypes.string.isRequired,
 };
 
 export default Cell;

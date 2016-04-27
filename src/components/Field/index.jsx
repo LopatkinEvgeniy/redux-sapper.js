@@ -28,7 +28,7 @@ class Field extends Component {
                 cell={cell}
                 rowKey={rowKey}
                 cellKey={cellKey}
-                isBlocked={fieldState.isBlocked}
+                gameStatus={fieldState.gameStatus}
                 fieldOpenRowAction={fieldOpenRowAction}
                 fieldClickOnBombAction={fieldClickOnBombAction}
               />

@@ -10,6 +10,9 @@ import {
   CELL_STATUS_OPENED,
   // CELL_STATUS_QUESTION,
   // CELL_STATUS_MARK,
+  GAME_STATUS_WIN,
+  GAME_STATUS_LOOSE,
+  GAME_STATUS_GAME,
 } from '../../constants/field';
 
 import openCellsRecursive from '../../utils/openCellsRecursive';
@@ -19,7 +22,7 @@ const initialState = {
   rowsCount: 20,
   colsCount: 30,
   bombsFactor: 0.1,
-  isBlocked: false,
+  gameStatus: GAME_STATUS_GAME,
 };
 
 export default function fieldState(state = initialState, action) {
@@ -27,7 +30,7 @@ export default function fieldState(state = initialState, action) {
     case FIELD_GENERATE: {
       return Object.assign({}, state, {
         rows: action.rows,
-        isBlocked: false,
+        gameStatus: GAME_STATUS_GAME,
       });
     }
 
@@ -58,8 +61,27 @@ export default function fieldState(state = initialState, action) {
         newRows[rowKey][cellKey].status = CELL_STATUS_OPENED;
       }
 
+      let isVictory = true;
+
+      newRows.forEach(row => row.forEach(cell => {
+        if (!cell.hasBomb && cell.status !== CELL_STATUS_OPENED) {
+          isVictory = false;
+        }
+      }));
+
+      if (isVictory) {
+        newRows.forEach(row => row.forEach(cell => {
+          const currentCell = cell;
+
+          if (currentCell.hasBomb) {
+            currentCell.status = CELL_STATUS_OPENED;
+          }
+        }));
+      }
+
       return Object.assign({}, state, {
         rows: newRows,
+        gameStatus: isVictory ? GAME_STATUS_WIN : GAME_STATUS_GAME,
       });
     }
 
@@ -76,7 +98,7 @@ export default function fieldState(state = initialState, action) {
 
       return Object.assign({}, state, {
         rows: newRows,
-        isBlocked: true,
+        gameStatus: GAME_STATUS_LOOSE,
       });
     }
 
