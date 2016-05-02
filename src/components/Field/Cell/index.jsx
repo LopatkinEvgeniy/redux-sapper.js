@@ -26,10 +26,12 @@ class Cell extends Component {
       gameStatus,
     } = this.props;
 
+    // Block cells when game over or victory
     if (gameStatus !== GAME_STATUS_GAME) {
       return false;
     }
 
+    // Ignore click on opened cell
     if (cell.status === CELL_STATUS_OPENED) {
       return false;
     }

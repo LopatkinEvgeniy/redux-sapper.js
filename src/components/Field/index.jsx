@@ -7,6 +7,7 @@ class Field extends Component {
 
     const { fieldState, fieldGenerateAction } = props;
 
+    // Generate new game when page opened
     fieldGenerateAction({
       rowsCount: fieldState.rowsCount,
       colsCount: fieldState.colsCount,
@@ -40,7 +41,6 @@ class Field extends Component {
   }
 }
 
-// TODO: use immutable PropTypes
 Field.propTypes = {
   fieldState: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,

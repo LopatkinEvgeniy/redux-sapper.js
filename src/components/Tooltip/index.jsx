@@ -1,3 +1,7 @@
+/*
+ * React-Tooltip component.
+ * */
+
 import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 
@@ -23,6 +27,7 @@ class Tooltip extends Component {
   }
 
   handleClick(event) {
+    // Hide tooltip when click outside
     try {
       if (!findDOMNode(this).contains(event.target)) {
         if (!this.state.isHidden) {

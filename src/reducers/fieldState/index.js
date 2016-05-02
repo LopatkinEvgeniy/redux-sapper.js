@@ -46,11 +46,13 @@ export default function fieldState(state = initialState, action) {
       const { rowKey, cellKey } = action;
       const newRows = JSON.parse(JSON.stringify(state.rows));
 
+      // If user clicks on zero cell
       if (!newRows[rowKey][cellKey].hasBomb &&
         (newRows[rowKey][cellKey].bombsAroundCount === 0)) {
         const rowsLength = newRows.length;
         const cellsLength = newRows[rowKey].length;
 
+        // Recursive open all connected cells
         openCellsRecursive({
           rows: newRows,
           rowKey,
@@ -63,12 +65,14 @@ export default function fieldState(state = initialState, action) {
 
       let isVictory = true;
 
+      // Calculate is victory or not
       newRows.forEach(row => row.forEach(cell => {
         if (!cell.hasBomb && cell.status !== CELL_STATUS_OPENED) {
           isVictory = false;
         }
       }));
 
+      // If victory - open all cells
       if (isVictory) {
         newRows.forEach(row => row.forEach(cell => {
           const currentCell = cell;
@@ -88,6 +92,7 @@ export default function fieldState(state = initialState, action) {
     case FIELD_CLICK_ON_BOMB: {
       const newRows = JSON.parse(JSON.stringify(state.rows));
 
+      // Show all bombs in game
       newRows.forEach(row => row.forEach(cell => {
         const currentCell = cell;
 

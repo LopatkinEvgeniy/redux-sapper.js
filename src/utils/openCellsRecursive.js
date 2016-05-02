@@ -1,3 +1,8 @@
+/*
+ * Recursive open all cells that connected to with current zero cell.
+ * This function take rows as parameter by ref and modify them.
+ * */
+
 import {
   CELL_STATUS_OPENED,
 } from '../constants/field';
@@ -7,7 +12,7 @@ function openCellsRecursive({ rows, rowKey, cellKey, rowsLength, cellsLength }) 
   // open current cell
   rows[rowKey][cellKey].status = CELL_STATUS_OPENED;
 
-  // recursion only for zero
+  // recursion only for zero cell
   if (rows[rowKey][cellKey].bombsAroundCount !== 0) {
     return;
   }

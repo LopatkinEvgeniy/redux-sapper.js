@@ -95,7 +95,6 @@ class GenerateForm extends Component {
   }
 }
 
-// TODO: use immutable PropTypes
 GenerateForm.propTypes = {
   fieldState: PropTypes.object.isRequired,
   fieldGenerateAction: PropTypes.func.isRequired,
